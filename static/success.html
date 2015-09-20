@@ -1,0 +1,54 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="css/default.css" type="text/css" rel="stylesheet">
+<link href="css/fa/css/font-awesome.css" type="text/css" rel="stylesheet">
+<title>Mock OAuth Client</title>
+<script src="js/jx/utils.js"></script>
+<script src="js/jx/rpc.js"></script>
+<script src="js/jx/dom.js"></script>
+<script src="js/jquery/jquery.js"></script>
+<script src="js/mock-oauth.js"></script>
+<script>
+	$(document).ready(function(){
+		p = urlparser(window.location.search) ;
+		jx.dom.set.value('code',p.code) 
+		jx.dom.set.value('host',window.location.host) 
+		var value = jx.dom.get.value('url') ;
+		value = value.replace(/:host/,window.location.host).replace(/:endpoint/,window.location.search) 
+		//jx.dom.set.value('url',value) 
+	})
+</script>
+<body>
+
+	<div align="center" style="font-weight:bold">OAuth 2.0 Mock Authorization</div>
+	<div align="center" class="small">The Phi Technology</div>
+	<br><p>
+	<table align="center">
+	<tr><td align="center">
+		<div>
+			You are ready, Congratulations !!
+			<br>
+			<div align="left" class="default">
+				At this point your client application must extract:
+				<br><i class="fa fa-check"  style="color:4682b4" ></i> code = <span id="code"></span>
+				<br><i class="fa fa-check"  style="color:4682b4" ></i> submit code with platform to the endpoint
+				<br>
+				<br><p>
+				<div class="default border">
+				<b>Your app must submit:</b><br>
+					<span id="url">http://:host/:endpoint/files?filter=mp3</span>
+
+				<br>
+					<div class="default" style=" margin-top:20px">
+						<b>Your app configuration:</b>
+						<br><i class="fa fa-check"  style="color:4682b4" ></i> hostname : <span id="host"></span>
+						<br><i class="fa fa-check"  style="color:4682b4" ></i> endpoint : <span id="endpoint"> xxxx (mock-oauth|cloud-view|iroute-api) </span>
+						<br><i class="fa fa-check"  style="color:4682b4" ></i> cloud api: <span id="endpoint">xxxx (facebook|linkedin|twitter...)</span>
+					</div>
+				</div>
+			</div>
+
+		
+		</div>
+	</td></tr>
+	</table>
+</body>

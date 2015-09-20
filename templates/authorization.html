@@ -1,0 +1,50 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="{{ url_for('static', filename='css/default.css') }}" type="text/css" rel="stylesheet">
+<link href="{{ url_for('static', filename='css/fa/css/font-awesome.css') }}" type="text/css" rel="stylesheet">
+<title>Mock OAuth Client</title>
+<script src="{{ url_for('static',filename='js/jx/utils.js') }}"></script>
+<script src="{{ url_for('static',filename='js/jx/rpc.js') }}"></script>
+<script src="{{ url_for('static',filename='js/jx/dom.js') }}"></script>
+<script src="{{ url_for('static',filename='js/mock-oauth.js') }}"></script>
+
+<body>
+
+	<div align="center" style="text-transform:capitalize;font-weight:bold">OAuth 2.0 Mock Authorization
+	<br><font style="color:#4682b4">{{id}}</font>
+</div>
+	<div align="center" class="small">The Phi Technology</div>
+	<br><p>
+	<table align="center">
+	<tr><td align="center">
+	<div id="authentication">
+		<div class="input">A given User Name</div>
+		<div class="input">*************</div>
+		<br>
+		<div type="text" class="button" onclick="mock.oauth.cancel()">Cancel</div>
+		<div type="text" class="button" onclick="mock.oauth.login()">Login</div>
+	</div>
+	<div id="authorization" style="display:none">
+		<div align="center" class="default">
+		
+				<b>The Phi Technology</b> is requesting permission to your mock account:
+		</div>
+		<table align="center">
+			<tr><td class="default">
+				<br><i class="fa fa-check"></i> Read/write access to your account
+				<br><i class="fa fa-check"></i> Automatically log you in 
+				<br><i class="fa fa-check"></i> Have knowledge of your email known
+
+			</td></tr>
+			<tr>
+				<td  valign="middle">
+					<br>
+					<div type="text" class="button" onclick="mock.oauth.cancel()">Cancel</div>
+					<div type="text" class="button" onclick="mock.oauth.init()">Allow</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+	</td></tr>
+	
+	</table>
+</body>
