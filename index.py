@@ -33,6 +33,26 @@ def get():
 	session['uid'] = uuid.uuid4().urn[9:] ;
 	id = request.args.get('id') ;
 	return render_template('authorization.html',id=id) ;
+
+
+@app.route('/get',methods=['GET'])
+def get_auth():
+	pass	
+
+@app.route('/set',methods=['POST']) 
+def set():
+	code = request.args.get('code')
+	if code is not None:
+		info = {}
+		info['uid'] = 'support@the-phi.com' ;
+		info['uii'] = 'Mock User' ;
+
+		session['uid'] = info
+		return '1' ;
+	else:
+		del session['uid'] ;
+		return '0' 
+	
 @app.route('/authorize',methods=['POST'])
 def authorize() :
 	key = session['uid'] ;	
@@ -42,7 +62,9 @@ def authorize() :
 		url = 'error.html'
 	print request.endpoint
 	return url ;
-@app.route('/<id>/files',methods=['GET'])
+
+
+@app.route('/files',methods=['GET'])
 def get_files():
 	filter = request.args.get('filter') ;
 	if filter is None:
@@ -58,19 +80,19 @@ def get_files():
 	This function returns the current user's information i.e just high level information nothing major
 	The basic idea is uid: email, uii: full name
 """
-@app.route("/<id>/info",methods=['GET','POST']) 
+@app.route("/info",methods=['GET','POST']) 
 def get_uid():
-	info = {}
-	info['uid'] = 'support@the-phi.com' ;
-	info['uii'] = 'Mock User' ;
-	return json.dumps(info);
-
+	if 'uid' in session:
+		info = session['uid'] 
+		return json.dumps(info);
+	else:
+		return '0' 
 """
 	This function sets the code from which the authentication token is requested
 
 """
-@app.route('/<id>/set')
-def set ():
+@app.route('/set',methods=['POST'])
+def set_code():
 	code = request.args.get('code') ;
 	if 'uid' in session:
 		return '1';
@@ -78,7 +100,7 @@ def set ():
 		return '0';
 
 
-@app.route('/<id>/stream',methods=['GET'])
+@app.route('/stream',methods=['GET'])
 def stream():
 	id = request.args.get('id') ;
 	file = ([file for file in myfiles if file['name'] == id])[0]
