@@ -85,8 +85,8 @@ def get(id):
 """
 	This function is part of the OAuth 2.0 specifications that	
 """
-@app.route('/authorize',methods=['POST'])
-def authorize() :
+@app.route('/<id>/authorize',methods=['POST'])
+def authorize(id) :
 	key = session['uid'] ;	
 	if key is not None:
 		url  = '/static/success.html?code=' +  key ;

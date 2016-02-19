@@ -23,10 +23,11 @@ mock.oauth.cancel = function(){
 * This function will invoke the api to simulate a response from the service provider.
 */
 mock.oauth.init = function(){
+	
 	httpclient = HttpClient.instance() ;
-	var url = ([window.location.pathname,'authorize']).join('')
+	var url = ([window.location.href,'authorize']).join('')
 	httpclient.post(url,function(x){
-		var url = ([window.location.pathname,x.responseText]).join('').replace(/\/\/static/,'/static')
+		var url = ([x.responseText]).join('').replace(/\/\/static/,'/static')
 		window.open(url,'_self','width=405') 
 	})
 }
